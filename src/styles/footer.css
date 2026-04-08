@@ -32,6 +32,11 @@
     color: #FFFFFF;
     margin-bottom: 16px;
 }
+.footer-link-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 24px;
+}
 .footer-link-list {
     list-style: none;
 }

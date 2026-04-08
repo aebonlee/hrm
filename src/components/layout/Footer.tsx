@@ -12,8 +12,8 @@ export default function Footer(): ReactElement {
         <div className="footer-content">
           <div className="footer-brand">
             <div className="footer-logo">
-              <span className="brand-study">HRM</span>
-              <span className="brand-master"> Research</span>
+              <span className="brand-study">DreamIT</span>
+              <span className="brand-master"> HRM</span>
             </div>
             <p className="footer-description">{t('footer.description')}</p>
             <p className="footer-description" style={{ marginTop: 8, fontSize: 13 }}>{t('footer.descriptionDetail')}</p>
@@ -21,16 +21,20 @@ export default function Footer(): ReactElement {
 
           <div className="footer-links">
             <h4>{t('footer.quickLinks')}</h4>
-            <ul className="footer-link-list">
-              <li><Link to="/hrm-intro">{isKo ? 'HRM 개론' : 'HRM Intro'}</Link></li>
-              <li><Link to="/recruitment">{isKo ? '채용과 선발' : 'Recruitment'}</Link></li>
-              <li><Link to="/training">{isKo ? '교육과 개발' : 'Training'}</Link></li>
-              <li><Link to="/performance">{isKo ? '성과관리' : 'Performance'}</Link></li>
-              <li><Link to="/compensation">{isKo ? '보상관리' : 'Compensation'}</Link></li>
-              <li><Link to="/labor-relations">{isKo ? '노사관계' : 'Labor Relations'}</Link></li>
-              <li><Link to="/org-culture">{isKo ? '조직문화' : 'Org Culture'}</Link></li>
-              <li><Link to="/hr-trends">{isKo ? 'HR 트렌드' : 'HR Trends'}</Link></li>
-            </ul>
+            <div className="footer-link-grid">
+              <ul className="footer-link-list">
+                <li><Link to="/hrm-intro">{isKo ? 'HRM 개론' : 'HRM Intro'}</Link></li>
+                <li><Link to="/recruitment">{isKo ? '채용과 선발' : 'Recruitment'}</Link></li>
+                <li><Link to="/training">{isKo ? '교육과 개발' : 'Training'}</Link></li>
+                <li><Link to="/performance">{isKo ? '성과관리' : 'Performance'}</Link></li>
+              </ul>
+              <ul className="footer-link-list">
+                <li><Link to="/compensation">{isKo ? '보상관리' : 'Compensation'}</Link></li>
+                <li><Link to="/labor-relations">{isKo ? '노사관계' : 'Labor Relations'}</Link></li>
+                <li><Link to="/org-culture">{isKo ? '조직문화' : 'Org Culture'}</Link></li>
+                <li><Link to="/hr-trends">{isKo ? 'HR 트렌드' : 'HR Trends'}</Link></li>
+              </ul>
+            </div>
           </div>
 
           <div className="footer-contact">

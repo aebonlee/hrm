@@ -12,9 +12,9 @@ const translations: Record<string, Record<string, any>> = {
     features: {
       title: '왜 DreamIT HRM인가?',
       subtitle: 'HRM의 핵심 영역을 체계적으로 정리했습니다.',
-      habits: { title: '인재 확보', desc: '전략적 채용과 효과적인 선발 기법으로 조직에 꼭 맞는 인재를 확보합니다.' },
-      memory: { title: '역량 개발', desc: '체계적인 교육훈련과 경력개발로 조직 구성원의 역량을 극대화합니다.' },
-      strategy: { title: '성과 관리', desc: 'MBO, KPI, OKR 등 다양한 성과관리 프레임워크를 학습합니다.' },
+      recruit: { title: '인재 확보', desc: '전략적 채용과 효과적인 선발 기법으로 조직에 꼭 맞는 인재를 확보합니다.' },
+      develop: { title: '역량 개발', desc: '체계적인 교육훈련과 경력개발로 조직 구성원의 역량을 극대화합니다.' },
+      perform: { title: '성과 관리', desc: 'MBO, KPI, OKR 등 다양한 성과관리 프레임워크를 학습합니다.' },
       balance: { title: '조직 균형', desc: '보상, 노사관계, 조직문화로 건강한 조직을 만드는 방법을 배웁니다.' },
     },
     home: {
@@ -56,9 +56,9 @@ const translations: Record<string, Record<string, any>> = {
     features: {
       title: 'Why DreamIT HRM?',
       subtitle: 'We have systematically organized the core areas of HRM.',
-      habits: { title: 'Talent Acquisition', desc: 'Acquire the right talent with strategic recruitment and effective selection techniques.' },
-      memory: { title: 'Competency Dev', desc: 'Maximize employee competencies through systematic training and career development.' },
-      strategy: { title: 'Performance Mgmt', desc: 'Learn various performance management frameworks including MBO, KPI, and OKR.' },
+      recruit: { title: 'Talent Acquisition', desc: 'Acquire the right talent with strategic recruitment and effective selection techniques.' },
+      develop: { title: 'Competency Dev', desc: 'Maximize employee competencies through systematic training and career development.' },
+      perform: { title: 'Performance Mgmt', desc: 'Learn various performance management frameworks including MBO, KPI, and OKR.' },
       balance: { title: 'Org Balance', desc: 'Build healthy organizations through compensation, labor relations, and organizational culture.' },
     },
     home: {
