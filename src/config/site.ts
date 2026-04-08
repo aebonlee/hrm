@@ -1,14 +1,14 @@
 export const SITE_CONFIG = {
-  id: 'research',
-  name: 'DreamIT Research',
+  id: 'hrm',
+  name: 'DreamIT HRM',
   nameKo: '인적자원관리(HRM)',
   description: '채용, 교육, 성과관리, 보상, 노사관계, 조직문화 등 HRM의 모든 것을 체계적으로 학습하는 플랫폼',
-  url: 'https://research.dreamitbiz.com',
+  url: 'https://hrm.dreamitbiz.com',
   base: '/',
   author: 'DreamIT Biz',
   email: 'aebon@dreamitbiz.com',
-  github: 'https://github.com/aebonlee/Research',
-  dbPrefix: 'research_',
+  github: 'https://github.com/aebonlee/hrm',
+  dbPrefix: 'hrm_',
 };
 
 export const LEARNING_PATHS = [

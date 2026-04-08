@@ -10,7 +10,7 @@ const translations: Record<string, Record<string, any>> = {
       ctaSecondary: '더 알아보기',
     },
     features: {
-      title: '왜 DreamIT Research인가?',
+      title: '왜 DreamIT HRM인가?',
       subtitle: 'HRM의 핵심 영역을 체계적으로 정리했습니다.',
       habits: { title: '인재 확보', desc: '전략적 채용과 효과적인 선발 기법으로 조직에 꼭 맞는 인재를 확보합니다.' },
       memory: { title: '역량 개발', desc: '체계적인 교육훈련과 경력개발로 조직 구성원의 역량을 극대화합니다.' },
@@ -54,7 +54,7 @@ const translations: Record<string, Record<string, any>> = {
       ctaSecondary: 'Learn More',
     },
     features: {
-      title: 'Why DreamIT Research?',
+      title: 'Why DreamIT HRM?',
       subtitle: 'We have systematically organized the core areas of HRM.',
       habits: { title: 'Talent Acquisition', desc: 'Acquire the right talent with strategic recruitment and effective selection techniques.' },
       memory: { title: 'Competency Dev', desc: 'Maximize employee competencies through systematic training and career development.' },

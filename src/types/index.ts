@@ -1,5 +1,5 @@
 /* ───────────────────────────────────────────
- *  Domain types for DreamIT Research (HRM)
+ *  Domain types for DreamIT HRM (HRM)
  * ─────────────────────────────────────────── */
 
 // ─── Language ───
