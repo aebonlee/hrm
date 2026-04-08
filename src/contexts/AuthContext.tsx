@@ -35,13 +35,11 @@ export const AuthProvider = ({ children }: AuthProviderProps): ReactElement => {
       return;
     }
     const p = await getProfile(authUser.id);
-    // signup_domain, role 자동 초기화 + 현재 도메인 visited_sites 자동 추가
     if (p) {
       const updates: Record<string, unknown> = {};
       const currentDomain = window.location.hostname;
       if (!p.signup_domain) updates.signup_domain = currentDomain;
       if (!p.role || p.role === 'user') updates.role = 'member';
-      // 현재 도메인이 visited_sites에 없으면 자동 추가
       const sites = Array.isArray(p.visited_sites) ? p.visited_sites : [];
       if (!sites.includes(currentDomain)) {
         updates.visited_sites = [...sites, currentDomain];
@@ -58,7 +56,6 @@ export const AuthProvider = ({ children }: AuthProviderProps): ReactElement => {
       }
     }
 
-    // 계정 상태 체크
     try {
       const client = getSupabase();
       if (client) {
@@ -79,7 +76,7 @@ export const AuthProvider = ({ children }: AuthProviderProps): ReactElement => {
         }
       }
     } catch {
-      // check_user_status 함수 미존재 시 무시
+      // check_user_status RPC not available
     }
   }, []);
 
@@ -90,13 +87,11 @@ export const AuthProvider = ({ children }: AuthProviderProps): ReactElement => {
       return;
     }
 
-    // onAuthStateChange 하나로 통합 — INITIAL_SESSION은 OAuth 코드 교환 완료 후 발생
     const { data: { subscription } } = client.auth.onAuthStateChange((event, session) => {
       const u = session?.user ?? null;
       setUser(u);
       if (u) {
         loadProfile(u);
-        // 실제 로그인 시에만 last_sign_in_at 갱신
         if (event === 'SIGNED_IN') {
           client.from('user_profiles')
             .update({ last_sign_in_at: new Date().toISOString() })
@@ -106,13 +101,11 @@ export const AuthProvider = ({ children }: AuthProviderProps): ReactElement => {
       } else {
         setProfile(null);
       }
-      // INITIAL_SESSION: 초기 로드 완료 (OAuth 콜백 코드 교환 포함)
       if (event === 'INITIAL_SESSION') {
         setLoading(false);
       }
     });
 
-    // 안전장치: INITIAL_SESSION이 5초 내 안 오면 loading 해제
     const fallbackTimer = setTimeout(() => {
       setLoading((prev) => {
         if (prev) console.warn('Auth: INITIAL_SESSION timeout, forcing loading=false');
@@ -147,14 +140,7 @@ export const AuthProvider = ({ children }: AuthProviderProps): ReactElement => {
 
   return (
     <AuthContext.Provider value={{
-      user,
-      profile,
-      loading,
-      isLoggedIn,
-      isAdmin,
-      signOut,
-      refreshProfile,
-      accountBlock,
+      user, profile, loading, isLoggedIn, isAdmin, signOut, refreshProfile, accountBlock,
       clearAccountBlock: () => setAccountBlock(null),
     }}>
       {children}

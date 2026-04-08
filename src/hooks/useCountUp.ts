@@ -22,12 +22,7 @@ const useCountUp = (end: number, duration = 2000, startOnView = true): UseCountU
       };
       requestAnimationFrame(step);
     };
-
-    if (!startOnView) {
-      animate();
-      return;
-    }
-
+    if (!startOnView) { animate(); return; }
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !hasAnimated.current) {
@@ -37,7 +32,6 @@ const useCountUp = (end: number, duration = 2000, startOnView = true): UseCountU
       },
       { threshold: 0.3 }
     );
-
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, [end, duration, startOnView]);

@@ -1,26 +1,29 @@
 import { Link } from 'react-router-dom';
-import SEOHead from '../components/SEOHead';
+import { useLanguage } from '../contexts/LanguageContext';
 import type { ReactElement } from 'react';
 
-const NotFound = (): ReactElement => {
-  return (
-    <>
-      <SEOHead title="404 - 페이지를 찾을 수 없습니다" />
-      <section className="not-found-page">
-        <div className="not-found-content">
-          <h1 className="not-found-code">404</h1>
-          <h2 className="not-found-title">페이지를 찾을 수 없습니다</h2>
-          <p className="not-found-desc">
-            요청하신 페이지가 존재하지 않거나 이동되었을 수 있습니다.
-          </p>
-          <div className="not-found-actions">
-            <Link to="/" className="not-found-btn primary">홈으로 돌아가기</Link>
-            <Link to="/contact" className="not-found-btn secondary">문의하기</Link>
-          </div>
-        </div>
-      </section>
-    </>
-  );
-};
+export default function NotFound(): ReactElement {
+  const { language } = useLanguage();
+  const isKo = language === 'ko';
 
-export default NotFound;
+  return (
+    <div className="not-found-page">
+      <div className="not-found-content">
+        <div className="not-found-code">404</div>
+        <h1 className="not-found-title">
+          {isKo ? '페이지를 찾을 수 없습니다' : 'Page Not Found'}
+        </h1>
+        <p className="not-found-desc">
+          {isKo
+            ? '요청하신 페이지가 존재하지 않거나 이동되었을 수 있습니다.'
+            : 'The page you requested may not exist or may have been moved.'}
+        </p>
+        <div className="not-found-actions">
+          <Link to="/" className="btn btn-primary">
+            {isKo ? '홈으로 돌아가기' : 'Back to Home'}
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}

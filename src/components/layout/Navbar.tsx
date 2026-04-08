@@ -6,14 +6,14 @@ import { useAuth } from '../../contexts/AuthContext';
 import type { ReactElement } from 'react';
 
 const NAV_ITEMS = [
-  { path: '/research-design', ko: '연구설계', en: 'Design' },
-  { path: '/sampling', ko: '표본추출', en: 'Sampling' },
-  { path: '/measurement', ko: '측정·척도', en: 'Measure' },
-  { path: '/survey', ko: '설문조사', en: 'Survey' },
-  { path: '/experiment', ko: '실험연구', en: 'Experiment' },
-  { path: '/qualitative', ko: '질적연구', en: 'Qualitative' },
-  { path: '/statistics', ko: '통계분석', en: 'Statistics' },
-  { path: '/ethics', ko: '연구윤리', en: 'Ethics' },
+  { path: '/hrm-intro', ko: 'HRM 개론', en: 'HRM Intro' },
+  { path: '/recruitment', ko: '채용', en: 'Recruit' },
+  { path: '/training', ko: '교육', en: 'Training' },
+  { path: '/performance', ko: '성과', en: 'Performance' },
+  { path: '/compensation', ko: '보상', en: 'Compensation' },
+  { path: '/labor-relations', ko: '노사관계', en: 'Labor' },
+  { path: '/org-culture', ko: '조직문화', en: 'Culture' },
+  { path: '/hr-trends', ko: 'HR트렌드', en: 'Trends' },
 ];
 
 export default function Navbar(): ReactElement {
@@ -49,7 +49,6 @@ export default function Navbar(): ReactElement {
   }, []);
 
   const themeIconClass = mode === 'auto' ? 'fa-circle-half-stroke' : mode === 'light' ? 'fa-sun' : 'fa-moon';
-
   const displayName = profile?.display_name || profile?.email?.split('@')[0] || '';
   const avatarLetter = displayName.charAt(0).toUpperCase();
 
@@ -63,8 +62,8 @@ export default function Navbar(): ReactElement {
       <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
         <div className="navbar-inner">
           <Link to="/" className="navbar-logo">
-            <span className="logo-study">Research</span>
-            <span className="logo-master">Master</span>
+            <span className="logo-study">HRM</span>
+            <span className="logo-master">Research</span>
           </Link>
 
           <ul className="nav-links">

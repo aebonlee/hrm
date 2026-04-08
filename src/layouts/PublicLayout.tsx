@@ -10,15 +10,14 @@ const Register = lazy(() => import('../pages/Register'));
 const ForgotPassword = lazy(() => import('../pages/ForgotPassword'));
 const MyPage = lazy(() => import('../pages/MyPage'));
 
-// Learning path pages
-const ResearchDesign = lazy(() => import('../pages/research-design/ResearchDesign'));
-const Sampling = lazy(() => import('../pages/sampling/Sampling'));
-const Measurement = lazy(() => import('../pages/measurement/Measurement'));
-const Survey = lazy(() => import('../pages/survey/Survey'));
-const Experiment = lazy(() => import('../pages/experiment/Experiment'));
-const Qualitative = lazy(() => import('../pages/qualitative/Qualitative'));
-const Statistics = lazy(() => import('../pages/statistics/Statistics'));
-const Ethics = lazy(() => import('../pages/ethics/Ethics'));
+const HrmIntro = lazy(() => import('../pages/hrm-intro/HrmIntro'));
+const Recruitment = lazy(() => import('../pages/recruitment/Recruitment'));
+const Training = lazy(() => import('../pages/training/Training'));
+const Performance = lazy(() => import('../pages/performance/Performance'));
+const Compensation = lazy(() => import('../pages/compensation/Compensation'));
+const LaborRelations = lazy(() => import('../pages/labor-relations/LaborRelations'));
+const OrgCulture = lazy(() => import('../pages/org-culture/OrgCulture'));
+const HrTrends = lazy(() => import('../pages/hr-trends/HrTrends'));
 
 const NotFound = lazy(() => import('../pages/NotFound'));
 
@@ -43,15 +42,14 @@ export default function PublicLayout(): ReactElement {
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/mypage" element={<MyPage />} />
 
-            {/* Learning Paths */}
-            <Route path="/research-design" element={<ResearchDesign />} />
-            <Route path="/sampling" element={<Sampling />} />
-            <Route path="/measurement" element={<Measurement />} />
-            <Route path="/survey" element={<Survey />} />
-            <Route path="/experiment" element={<Experiment />} />
-            <Route path="/qualitative" element={<Qualitative />} />
-            <Route path="/statistics" element={<Statistics />} />
-            <Route path="/ethics" element={<Ethics />} />
+            <Route path="/hrm-intro" element={<HrmIntro />} />
+            <Route path="/recruitment" element={<Recruitment />} />
+            <Route path="/training" element={<Training />} />
+            <Route path="/performance" element={<Performance />} />
+            <Route path="/compensation" element={<Compensation />} />
+            <Route path="/labor-relations" element={<LaborRelations />} />
+            <Route path="/org-culture" element={<OrgCulture />} />
+            <Route path="/hr-trends" element={<HrTrends />} />
 
             <Route path="*" element={<NotFound />} />
           </Routes>

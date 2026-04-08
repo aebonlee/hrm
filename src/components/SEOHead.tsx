@@ -18,10 +18,8 @@ const SEOHead = ({ title, description, path = '', ogImage, noindex = false }: SE
   const desc = description || DEFAULT_DESC;
   const image = ogImage || `${BASE}/assets/images/og-default.png`;
 
-  // useLanguage is called to stay consistent with original (future i18n SEO)
   useLanguage();
 
-  // React 19+ natively hoists <title>, <meta>, <link> to <head>
   return (
     <>
       <title>{fullTitle}</title>

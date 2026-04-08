@@ -1,6 +1,6 @@
 /* ============================================
-   Research Master - Base Styles
-   Deep Blue Primary (#1E40AF)
+   Study Master - Base Styles
+   Study Green Primary (#2563EB)
    공부 잘하는 방법 (How to Study Effectively)
    ============================================ */
 
@@ -22,9 +22,9 @@
 
 :root {
     /* ── Primary Colors (Study Green) ── */
-    --primary: #1E40AF;
-    --primary-dark: #1E3A8A;
-    --primary-light: #3B82F6;
+    --primary: #2563EB;
+    --primary-dark: #047857;
+    --primary-light: #34D399;
 
     /* ── Accent (Wisdom Purple) ── */
     --accent: #8B5CF6;
@@ -57,11 +57,11 @@
     --container-max: 1280px;
 
     /* ── Gradients ── */
-    --primary-gradient: linear-gradient(135deg, #1E40AF 0%, #3B82F6 100%);
-    --accent-gradient: linear-gradient(135deg, #1E3A8A 0%, #1E40AF 50%, #3B82F6 100%);
-    --hero-bg: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%);
-    --hero-bg-dark: linear-gradient(135deg, #020617 0%, #0F172A 50%, #020617 100%);
-    --highlight-gradient: linear-gradient(135deg, #93C5FD 0%, #BFDBFE 50%, #FFFFFF 100%);
+    --primary-gradient: linear-gradient(135deg, #2563EB 0%, #34D399 100%);
+    --accent-gradient: linear-gradient(135deg, #047857 0%, #2563EB 50%, #34D399 100%);
+    --hero-bg: linear-gradient(135deg, #1A2E1F 0%, #0D1F14 50%, #162920 100%);
+    --hero-bg-dark: linear-gradient(135deg, #0A160E 0%, #081210 50%, #0E1A14 100%);
+    --highlight-gradient: linear-gradient(135deg, #6EE7B7 0%, #A7F3D0 50%, #FFFFFF 100%);
 
     /* ── Glassmorphism ── */
     --glass-bg: rgba(255, 255, 255, 0.85);
@@ -79,8 +79,8 @@
     --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ── Color Theme: Research (Default - Deep Blue) ── */
-/* Default is already #1E40AF, no override needed */
+/* ── Color Theme: Study (Default - Emerald Green) ── */
+/* Default is already #2563EB, no override needed */
 
 /* ── Color Theme: Wisdom (Purple) ── */
 html[data-color="wisdom"] {

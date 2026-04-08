@@ -13,9 +13,9 @@ interface ThemeContextValue {
 const ThemeContext = createContext<ThemeContextValue | null>(null);
 
 const COLOR_OPTIONS = [
-  { name: 'research', color: '#1E40AF' },
+  { name: 'hrm', color: '#2563EB' },
   { name: 'wisdom', color: '#8B5CF6' },
-  { name: 'ocean', color: '#2563EB' },
+  { name: 'ocean', color: '#0891B2' },
   { name: 'sunset', color: '#D97706' },
   { name: 'cherry', color: '#E11D48' },
 ];
@@ -38,7 +38,7 @@ function getAutoTheme(): string {
 
 export function ThemeProvider({ children }: { children: ReactNode }): ReactElement {
   const [mode, setMode] = useState(() => getCookie('theme_mode') || 'auto');
-  const [colorTheme, setColorThemeState] = useState(() => getCookie('color_theme') || 'research');
+  const [colorTheme, setColorThemeState] = useState(() => getCookie('color_theme') || 'hrm');
 
   const resolvedTheme = mode === 'auto' ? getAutoTheme() : mode;
 
@@ -47,14 +47,13 @@ export function ThemeProvider({ children }: { children: ReactNode }): ReactEleme
   }, [resolvedTheme]);
 
   useEffect(() => {
-    if (colorTheme === 'research') {
+    if (colorTheme === 'hrm') {
       document.documentElement.removeAttribute('data-color');
     } else {
       document.documentElement.setAttribute('data-color', colorTheme);
     }
   }, [colorTheme]);
 
-  // Auto theme tick
   useEffect(() => {
     if (mode !== 'auto') return;
     const interval = setInterval(() => {

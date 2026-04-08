@@ -1,5 +1,5 @@
 /* ───────────────────────────────────────────
- *  Domain types for DreamIT Research
+ *  Domain types for DreamIT Research (HRM)
  * ─────────────────────────────────────────── */
 
 // ─── Language ───
@@ -7,7 +7,7 @@ export type Language = 'ko' | 'en';
 
 // ─── Theme ───
 export type ThemeMode = 'auto' | 'light' | 'dark';
-export type ColorTheme = 'research' | 'wisdom' | 'ocean' | 'sunset' | 'cherry';
+export type ColorTheme = 'hrm' | 'wisdom' | 'ocean' | 'sunset' | 'cherry';
 
 // ─── Learning Path ───
 export interface LearningPath {

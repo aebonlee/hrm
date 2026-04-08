@@ -1,45 +1,54 @@
-import { useState, useEffect, type ReactElement } from 'react';
+import { useState, type ReactElement } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useAuth } from '../contexts/AuthContext';
+import { useToast } from '../contexts/ToastContext';
 import { updateProfile } from '../utils/auth';
 import SEOHead from '../components/SEOHead';
-import '../styles/auth.css';
 
-const MyPage = (): ReactElement => {
-  const { t } = useLanguage();
-  const { user, profile, signOut, refreshProfile } = useAuth();
+export default function MyPage(): ReactElement {
+  const { language } = useLanguage();
+  const { user, profile, signOut, refreshProfile, isAdmin } = useAuth();
+  const { showToast } = useToast();
   const navigate = useNavigate();
+  const isKo = language === 'ko';
 
   const [editing, setEditing] = useState(false);
-  const [form, setForm] = useState({ displayName: '', avatarUrl: '' });
-  const [saving, setSaving] = useState(false);
-  const [message, setMessage] = useState('');
+  const [displayName, setDisplayName] = useState(profile?.display_name || '');
 
-  useEffect(() => {
-    if (profile) {
-      setForm({
-        displayName: profile.display_name || '',
-        avatarUrl: profile.avatar_url || ''
-      });
-    }
-  }, [profile]);
+  if (!user) {
+    return (
+      <>
+        <SEOHead title={isKo ? '마이페이지' : 'My Page'} path="/mypage" noindex />
+        <section className="page-header">
+          <div className="container">
+            <h1>{isKo ? '마이페이지' : 'My Page'}</h1>
+          </div>
+        </section>
+        <section style={{ padding: '80px 0', textAlign: 'center' }}>
+          <div className="container">
+            <p style={{ marginBottom: 24, color: 'var(--text-secondary)' }}>
+              {isKo ? '로그인이 필요합니다.' : 'Please sign in to continue.'}
+            </p>
+            <Link to="/login" className="btn btn-primary">{isKo ? '로그인' : 'Sign In'}</Link>
+          </div>
+        </section>
+      </>
+    );
+  }
+
+  const name = profile?.display_name || user.email?.split('@')[0] || '';
+  const avatarLetter = name.charAt(0).toUpperCase();
 
   const handleSave = async () => {
-    setSaving(true);
-    setMessage('');
+    if (!user) return;
     try {
-      await updateProfile(user!.id, {
-        display_name: form.displayName,
-        avatar_url: form.avatarUrl
-      });
+      await updateProfile(user.id, { display_name: displayName });
       await refreshProfile();
       setEditing(false);
-      setMessage(t('auth.profileUpdated'));
-    } catch (err) {
-      setMessage((err as Error).message);
-    } finally {
-      setSaving(false);
+      showToast(isKo ? '프로필이 업데이트되었습니다.' : 'Profile updated.', 'success');
+    } catch {
+      showToast(isKo ? '업데이트 실패' : 'Update failed', 'error');
     }
   };
 
@@ -50,79 +59,56 @@ const MyPage = (): ReactElement => {
 
   return (
     <>
-      <SEOHead title="마이페이지" path="/mypage" noindex />
+      <SEOHead title={isKo ? '마이페이지' : 'My Page'} path="/mypage" noindex />
       <section className="page-header">
         <div className="container">
-          <h1 className="page-title">{t('auth.myPage')}</h1>
+          <h1>{isKo ? '마이페이지' : 'My Page'}</h1>
         </div>
       </section>
-
-      <section className="auth-section">
+      <section style={{ padding: '60px 0' }}>
         <div className="container">
           <div className="mypage-card">
             <div className="mypage-avatar">
               {profile?.avatar_url ? (
-                <img src={profile.avatar_url} alt={profile.display_name} loading="lazy" />
+                <img src={profile.avatar_url} alt={name} />
               ) : (
-                <div className="mypage-avatar-placeholder">
-                  {(profile?.display_name || user?.email || '?')[0].toUpperCase()}
-                </div>
+                <div className="mypage-avatar-placeholder">{avatarLetter}</div>
               )}
             </div>
-
             <div className="mypage-info">
               {editing ? (
                 <div className="mypage-edit-form">
-                  <div className="auth-form-group">
-                    <label>{t('auth.displayName')}</label>
-                    <input
-                      type="text"
-                      value={form.displayName}
-                      onChange={e => setForm({ ...form, displayName: e.target.value })}
-                    />
-                  </div>
+                  <input
+                    type="text"
+                    value={displayName}
+                    onChange={e => setDisplayName(e.target.value)}
+                    style={{ width: '100%', padding: '8px 12px', border: '1px solid var(--border-medium)', borderRadius: 8, fontSize: 15 }}
+                  />
                   <div className="mypage-edit-actions">
-                    <button className="board-btn primary" onClick={handleSave} disabled={saving}>
-                      {saving ? t('auth.saving') : t('auth.save')}
-                    </button>
-                    <button className="board-btn" onClick={() => setEditing(false)}>
-                      {t('community.cancel')}
-                    </button>
+                    <button className="btn btn-primary btn-sm" onClick={handleSave}>{isKo ? '저장' : 'Save'}</button>
+                    <button className="btn btn-secondary btn-sm" onClick={() => setEditing(false)}>{isKo ? '취소' : 'Cancel'}</button>
                   </div>
                 </div>
               ) : (
                 <>
-                  <h2 className="mypage-name">{profile?.display_name || t('auth.noName')}</h2>
-                  <p className="mypage-email">{user?.email}</p>
-                  <p className="mypage-provider">
-                    {profile?.provider ? `${t('auth.loginWith')} ${profile.provider}` : t('auth.emailAccount')}
-                  </p>
-                  {profile?.role === 'admin' && (
-                    <span className="mypage-role-badge">{t('auth.admin')}</span>
-                  )}
-                  <button className="board-btn" onClick={() => setEditing(true)} style={{ marginTop: '16px' }}>
-                    {t('auth.editProfile')}
+                  <h2 className="mypage-name">{name}</h2>
+                  <p className="mypage-email">{user.email}</p>
+                  <p className="mypage-provider">{profile?.provider || 'email'}</p>
+                  {isAdmin && <span className="mypage-role-badge">Admin</span>}
+                  <button
+                    className="btn-link"
+                    style={{ marginTop: 8, fontSize: 13 }}
+                    onClick={() => { setDisplayName(name); setEditing(true); }}
+                  >
+                    <i className="fa-solid fa-pen" /> {isKo ? '이름 수정' : 'Edit Name'}
                   </button>
                 </>
               )}
-
-              {message && <div className="auth-message">{message}</div>}
-            </div>
-
-            <div className="mypage-sections">
-              <Link to="/mypage/orders" className="mypage-link-card">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="24" height="24">
-                  <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
-                  <line x1="3" y1="6" x2="21" y2="6" />
-                  <path d="M16 10a4 4 0 0 1-8 0" />
-                </svg>
-                <span>{t('auth.orderHistory')}</span>
-              </Link>
             </div>
 
             <div className="mypage-footer">
-              <button className="board-btn danger" onClick={handleSignOut}>
-                {t('auth.logout')}
+              <button className="btn btn-secondary btn-sm" onClick={handleSignOut}>
+                {isKo ? '로그아웃' : 'Sign Out'}
               </button>
             </div>
           </div>
@@ -130,6 +116,4 @@ const MyPage = (): ReactElement => {
       </section>
     </>
   );
-};
-
-export default MyPage;
+}

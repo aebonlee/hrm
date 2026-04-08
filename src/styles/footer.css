@@ -18,7 +18,7 @@
     font-weight: 800;
     margin-bottom: 16px;
 }
-.brand-study { color: var(--primary); }
+.brand-study { color: #2563EB; }
 .brand-master { color: #8B5CF6; }
 .footer-description {
     font-size: 14px;
@@ -34,12 +34,9 @@
 }
 .footer-link-list {
     list-style: none;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4px 24px;
 }
 .footer-link-list li {
-    margin-bottom: 6px;
+    margin-bottom: 10px;
 }
 .footer-link-list a {
     font-size: 14px;
@@ -48,7 +45,7 @@
     transition: color 0.2s ease;
 }
 .footer-link-list a:hover {
-    color: var(--primary);
+    color: #2563EB;
 }
 .footer-contact p {
     font-size: 14px;
@@ -61,10 +58,10 @@
     gap: 8px;
 }
 .footer-email a {
-    color: var(--primary);
+    color: #2563EB;
 }
 .footer-email-icon {
-    color: var(--primary);
+    color: #2563EB;
 }
 .business-hours {
     font-size: 13px;

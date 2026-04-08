@@ -12,8 +12,8 @@ export default function Footer(): ReactElement {
         <div className="footer-content">
           <div className="footer-brand">
             <div className="footer-logo">
-              <span className="brand-study">Research</span>
-              <span className="brand-master"> Master</span>
+              <span className="brand-study">HRM</span>
+              <span className="brand-master"> Research</span>
             </div>
             <p className="footer-description">{t('footer.description')}</p>
             <p className="footer-description" style={{ marginTop: 8, fontSize: 13 }}>{t('footer.descriptionDetail')}</p>
@@ -22,14 +22,14 @@ export default function Footer(): ReactElement {
           <div className="footer-links">
             <h4>{t('footer.quickLinks')}</h4>
             <ul className="footer-link-list">
-              <li><Link to="/research-design">{isKo ? '연구설계' : 'Research Design'}</Link></li>
-              <li><Link to="/sampling">{isKo ? '표본추출' : 'Sampling'}</Link></li>
-              <li><Link to="/measurement">{isKo ? '측정과 척도' : 'Measurement'}</Link></li>
-              <li><Link to="/survey">{isKo ? '설문조사법' : 'Survey'}</Link></li>
-              <li><Link to="/experiment">{isKo ? '실험연구' : 'Experiment'}</Link></li>
-              <li><Link to="/qualitative">{isKo ? '질적연구' : 'Qualitative'}</Link></li>
-              <li><Link to="/statistics">{isKo ? '통계분석' : 'Statistics'}</Link></li>
-              <li><Link to="/ethics">{isKo ? '연구윤리' : 'Ethics'}</Link></li>
+              <li><Link to="/hrm-intro">{isKo ? 'HRM 개론' : 'HRM Intro'}</Link></li>
+              <li><Link to="/recruitment">{isKo ? '채용과 선발' : 'Recruitment'}</Link></li>
+              <li><Link to="/training">{isKo ? '교육과 개발' : 'Training'}</Link></li>
+              <li><Link to="/performance">{isKo ? '성과관리' : 'Performance'}</Link></li>
+              <li><Link to="/compensation">{isKo ? '보상관리' : 'Compensation'}</Link></li>
+              <li><Link to="/labor-relations">{isKo ? '노사관계' : 'Labor Relations'}</Link></li>
+              <li><Link to="/org-culture">{isKo ? '조직문화' : 'Org Culture'}</Link></li>
+              <li><Link to="/hr-trends">{isKo ? 'HR 트렌드' : 'HR Trends'}</Link></li>
             </ul>
           </div>
 
@@ -42,21 +42,13 @@ export default function Footer(): ReactElement {
             <p>010-3700-0629</p>
             <p>{isKo ? '카카오톡' : 'KakaoTalk'}: aebon</p>
             <p className="business-hours">{isKo ? '평일 09:00 ~ 18:00' : 'Weekdays 09:00 ~ 18:00'}</p>
-
             <div className="footer-family">
-              <select
-                defaultValue=""
-                onChange={(e) => {
-                  if (e.target.value) window.open(e.target.value, '_blank');
-                  e.target.value = '';
-                }}
-              >
+              <select defaultValue="" onChange={(e) => { if (e.target.value) window.open(e.target.value, '_blank'); e.target.value = ''; }}>
                 <option value="" disabled>Family Site</option>
                 <option value="https://www.dreamitbiz.com">DreamIT Biz</option>
                 <option value="https://teaching.dreamitbiz.com">Teaching AI</option>
                 <option value="https://chatgpt.dreamitbiz.com">ChatGPT Master</option>
                 <option value="https://claude.dreamitbiz.com">Claude Master</option>
-                <option value="https://study.dreamitbiz.com">Study Master</option>
               </select>
             </div>
           </div>

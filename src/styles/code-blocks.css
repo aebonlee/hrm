@@ -79,7 +79,7 @@
     display: inline-block;
     width: 100%;
     background: rgba(5, 150, 105, 0.12);
-    border-left: 3px solid #059669;
+    border-left: 3px solid #2563EB;
     margin-left: -16px;
     padding-left: 13px;
     padding-right: 16px;
@@ -160,7 +160,7 @@
 /* ── Dark mode adjustments ── */
 [data-theme="dark"] .inline-code {
     background: rgba(255, 255, 255, 0.08);
-    color: #059669;
+    color: #2563EB;
     border-color: rgba(255, 255, 255, 0.12);
 }
 [data-theme="dark"] .guide-content strong {

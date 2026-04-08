@@ -75,7 +75,7 @@
     letter-spacing: -0.03em;
 }
 .hero-title-highlight {
-    background: linear-gradient(135deg, #6EE7B7, #059669);
+    background: linear-gradient(135deg, #6EE7B7, #2563EB);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

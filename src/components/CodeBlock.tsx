@@ -7,10 +7,7 @@ function escapeHtml(str: string): string {
   return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
-interface Rule {
-  type: string;
-  re: RegExp;
-}
+interface Rule { type: string; re: RegExp; }
 
 const RULES_GENERIC: Rule[] = [
   { type: 'comment', re: /(\/\/.*$|#.*$|\/\*[\s\S]*?\*\/)/gm },
@@ -33,10 +30,7 @@ function tokenizeLine(line: string, rules: Rule[]): string {
   const filtered: typeof tokens = [];
   let lastEnd = 0;
   for (const t of tokens) {
-    if (t.start >= lastEnd) {
-      filtered.push(t);
-      lastEnd = t.end;
-    }
+    if (t.start >= lastEnd) { filtered.push(t); lastEnd = t.end; }
   }
   let result = '';
   let pos = 0;

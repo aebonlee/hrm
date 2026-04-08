@@ -1,27 +1,26 @@
-import { useState, type ReactElement, type FormEvent } from 'react';
+import { useState, type ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
 import { resetPassword } from '../utils/auth';
 import SEOHead from '../components/SEOHead';
-import '../styles/auth.css';
 
-const ForgotPassword = (): ReactElement => {
-  const { t } = useLanguage();
+export default function ForgotPassword(): ReactElement {
+  const { language } = useLanguage();
+  const isKo = language === 'ko';
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState('');
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email) return;
     setLoading(true);
     setError('');
     try {
       await resetPassword(email);
       setSent(true);
-    } catch (err) {
-      setError((err as Error).message || 'Failed to send reset email');
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Error');
     } finally {
       setLoading(false);
     }
@@ -29,69 +28,39 @@ const ForgotPassword = (): ReactElement => {
 
   return (
     <>
-    <SEOHead title="비밀번호 찾기" path="/forgot-password" noindex />
-    <section className="auth-fullpage">
-      <div className="auth-center-wrapper">
-        <div className="auth-card-google">
-          <div className="auth-logo-area">
-            <span className="brand-dream">Dream</span>
-            <span className="brand-it">IT</span>{' '}
-            <span className="brand-biz">Biz</span>
-          </div>
-          <h2 className="auth-heading">{t('auth.forgotPasswordTitle')}</h2>
-          <p className="auth-sub">{t('auth.forgotPasswordSubtitle')}</p>
-
-          {sent ? (
-            <div style={{ textAlign: 'center', padding: '20px 0' }}>
-              <div style={{
-                width: '56px', height: '56px', borderRadius: '50%',
-                background: 'rgba(34, 197, 94, 0.1)', display: 'flex',
-                alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px'
-              }}>
-                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#22c55e" strokeWidth="2">
-                  <polyline points="20 6 9 17 4 12" />
-                </svg>
-              </div>
-              <p style={{ fontWeight: 600, marginBottom: '8px', color: 'var(--text-primary)' }}>
-                {t('auth.resetEmailSent')}
-              </p>
-              <p style={{ fontSize: '14px', color: 'var(--text-secondary)', marginBottom: '24px' }}>
-                {t('auth.checkEmailForReset')}
-              </p>
-              <Link to="/login" className="auth-next-btn" style={{ display: 'inline-block', textDecoration: 'none', textAlign: 'center' }}>
-                {t('auth.backToLogin')}
-              </Link>
+      <SEOHead title={isKo ? '비밀번호 찾기' : 'Forgot Password'} path="/forgot-password" noindex />
+      <div className="auth-fullpage">
+        <div className="auth-center-wrapper">
+          <div className="auth-card-google">
+            <div className="auth-logo-area">
+              <span style={{ color: 'var(--primary)' }}>HRM</span>{' '}
+              <span style={{ color: 'var(--accent)' }}>Research</span>
             </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="auth-email-form">
-              <div className="auth-input-group">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={e => setEmail(e.target.value)}
-                  placeholder={t('auth.emailPlaceholder')}
-                  required
-                  autoFocus
-                />
+            <h2 className="auth-heading">{isKo ? '비밀번호 찾기' : 'Reset Password'}</h2>
+            <p className="auth-sub">{isKo ? '가입하신 이메일을 입력해주세요.' : 'Enter your registered email address.'}</p>
+
+            {sent ? (
+              <div className="auth-message">
+                {isKo ? '비밀번호 재설정 이메일을 발송했습니다. 이메일을 확인해주세요.' : 'Password reset email sent. Please check your inbox.'}
               </div>
-
-              {error && <div className="auth-error">{error}</div>}
-
-              <div className="auth-form-actions">
-                <Link to="/login" className="auth-back-btn" style={{ textDecoration: 'none', textAlign: 'center' }}>
-                  {t('auth.backToLogin')}
-                </Link>
-                <button type="submit" className="auth-next-btn" disabled={loading}>
-                  {loading ? t('auth.sending') : t('auth.sendResetLink')}
+            ) : (
+              <form className="auth-email-form" onSubmit={handleSubmit}>
+                <div className="auth-input-group">
+                  <input type="email" placeholder={isKo ? '이메일' : 'Email'} value={email} onChange={e => setEmail(e.target.value)} required />
+                </div>
+                {error && <div className="auth-error">{error}</div>}
+                <button type="submit" className="auth-next-btn" style={{ width: '100%' }} disabled={loading}>
+                  {loading ? '...' : isKo ? '재설정 이메일 보내기' : 'Send Reset Email'}
                 </button>
-              </div>
-            </form>
-          )}
+              </form>
+            )}
+
+            <div className="auth-bottom-link">
+              <Link to="/login">{isKo ? '로그인으로 돌아가기' : 'Back to Login'}</Link>
+            </div>
+          </div>
         </div>
       </div>
-    </section>
     </>
   );
-};
-
-export default ForgotPassword;
+}

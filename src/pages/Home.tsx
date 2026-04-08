@@ -13,22 +13,22 @@ export default function Home(): ReactElement {
 
   const carouselSlides = [
     {
-      title: isKo ? '연구설계부터 통계분석까지' : 'From Research Design to Statistical Analysis',
+      title: isKo ? '채용부터 조직문화까지, HRM의 모든 것' : 'Everything in HRM: From Recruitment to Org Culture',
       description: isKo
-        ? '연구 문제 수립, 가설 설정, 자료수집, 통계분석까지 — 사회과학 조사방법론의 모든 것을 체계적으로 배웁니다.'
-        : 'From research question formulation to hypothesis testing, data collection, and statistical analysis — learn everything systematically.',
+        ? '인적자원관리의 핵심 영역인 채용, 교육, 성과관리, 보상, 노사관계를 체계적으로 학습합니다.'
+        : 'Systematically learn the core areas of HRM: recruitment, training, performance, compensation, and labor relations.',
     },
     {
-      title: isKo ? '과학적 연구의 기초' : 'Foundations of Scientific Research',
+      title: isKo ? '전략적 인적자원관리의 이론과 실무' : 'Strategic HRM: Theory and Practice',
       description: isKo
-        ? '신뢰도와 타당도를 갖춘 측정도구 개발, 표본추출, 실험설계 등 과학적 연구의 핵심 원리를 학습합니다.'
-        : 'Learn core principles of scientific research: measurement instrument development, sampling, and experimental design.',
+        ? '경영전략과 HR 전략의 연계, 데이터 기반 의사결정, 최신 HR 트렌드를 학습합니다.'
+        : 'Learn the alignment of business and HR strategy, data-driven decision making, and the latest HR trends.',
     },
     {
-      title: isKo ? '윤리적이고 신뢰할 수 있는 연구' : 'Ethical and Trustworthy Research',
+      title: isKo ? 'AI 시대의 HR 디지털 전환' : 'HR Digital Transformation in the AI Era',
       description: isKo
-        ? 'IRB 심의, 연구대상자 보호, 연구부정행위 방지 등 윤리적 연구 수행의 원칙을 배웁니다.'
-        : 'Learn principles of ethical research conduct including IRB review, participant protection, and misconduct prevention.',
+        ? 'HR 애널리틱스, AI 채용, 원격근무, ESG 등 미래 HR의 핵심 트렌드를 탐구합니다.'
+        : 'Explore key future HR trends including HR analytics, AI recruitment, remote work, and ESG.',
     },
   ];
 
@@ -41,7 +41,7 @@ export default function Home(): ReactElement {
         <HeroBackground />
         <div className="hero-content">
           <div className="hero-badge">
-            <i className="fa-solid fa-microscope" />
+            <i className="fa-solid fa-users-gear" />
             {t('hero.badge')}
           </div>
           <h1 className="hero-title">
@@ -50,8 +50,8 @@ export default function Home(): ReactElement {
           </h1>
           <p className="hero-description">{t('hero.description')}</p>
           <div className="hero-actions">
-            <Link to="/research-design" className="btn btn-primary-large">{t('hero.cta')}</Link>
-            <Link to="/sampling" className="btn btn-secondary" style={{ borderColor: 'rgba(255,255,255,0.3)', color: '#fff' }}>
+            <Link to="/hrm-intro" className="btn btn-primary-large">{t('hero.cta')}</Link>
+            <Link to="/recruitment" className="btn btn-secondary" style={{ borderColor: 'rgba(255,255,255,0.3)', color: '#fff' }}>
               {t('hero.ctaSecondary')}
             </Link>
           </div>
@@ -67,9 +67,9 @@ export default function Home(): ReactElement {
             <p className="section-subtitle">{t('features.subtitle')}</p>
           </div>
           <div className="features-grid">
-            <FeatureCard icon="fa-compass-drafting" title={t('features.habits.title')} description={t('features.habits.desc')} />
-            <FeatureCard icon="fa-ruler-combined" title={t('features.memory.title')} description={t('features.memory.desc')} />
-            <FeatureCard icon="fa-flask" title={t('features.strategy.title')} description={t('features.strategy.desc')} />
+            <FeatureCard icon="fa-user-plus" title={t('features.recruit.title')} description={t('features.recruit.desc')} />
+            <FeatureCard icon="fa-chalkboard-user" title={t('features.develop.title')} description={t('features.develop.desc')} />
+            <FeatureCard icon="fa-chart-line" title={t('features.perform.title')} description={t('features.perform.desc')} />
             <FeatureCard icon="fa-scale-balanced" title={t('features.balance.title')} description={t('features.balance.desc')} />
           </div>
         </div>
@@ -112,7 +112,7 @@ export default function Home(): ReactElement {
               <div className="stat-label">{t('stats.guides')}</div>
             </div>
             <div className="stat-item">
-              <div className="stat-number">48+</div>
+              <div className="stat-number">50+</div>
               <div className="stat-label">{t('stats.topics')}</div>
             </div>
             <div className="stat-item">
@@ -147,7 +147,7 @@ export default function Home(): ReactElement {
         <div className="container">
           <h2 className="cta-title">{t('cta.title')}</h2>
           <p className="cta-description">{t('cta.description')}</p>
-          <Link to="/research-design" className="btn btn-primary-large">{t('cta.button')}</Link>
+          <Link to="/hrm-intro" className="btn btn-primary-large">{t('cta.button')}</Link>
         </div>
       </section>
     </>
