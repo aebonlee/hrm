@@ -32,6 +32,19 @@ html[data-theme="dark"] .color-picker-dropdown {
     background: rgba(26, 26, 46, 0.95);
 }
 
+/* Theme Toggle */
+html[data-theme="dark"] .theme-toggle {
+    background: var(--bg-light-gray);
+    color: var(--text-primary);
+    border-color: var(--border-medium);
+}
+html[data-theme="dark"] .theme-toggle:hover {
+    background: var(--bg-medium-gray);
+}
+html[data-theme="dark"] .theme-toggle i {
+    color: var(--text-primary);
+}
+
 /* Buttons */
 html[data-theme="dark"] .btn-primary-large {
     background: var(--primary);
