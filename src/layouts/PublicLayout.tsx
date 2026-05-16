@@ -20,6 +20,7 @@ const OrgCulture = lazy(() => import('../pages/org-culture/OrgCulture'));
 const HrTrends = lazy(() => import('../pages/hr-trends/HrTrends'));
 
 const NotFound = lazy(() => import('../pages/NotFound'));
+const About = lazy(() => import('../pages/About'));
 
 function LoadingFallback(): ReactElement {
   return (
@@ -50,6 +51,8 @@ export default function PublicLayout(): ReactElement {
             <Route path="/labor-relations" element={<LaborRelations />} />
             <Route path="/org-culture" element={<OrgCulture />} />
             <Route path="/hr-trends" element={<HrTrends />} />
+            <Route path="/about" element={<About />} />
+
 
             <Route path="*" element={<NotFound />} />
           </Routes>
